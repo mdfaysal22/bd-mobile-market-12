@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { userAuth } from '../../../Contexts/AuthContext';
 
 const Navbar = () => {
     const [state, setState] = useState(false)
+    const { user } = useContext(userAuth);
     const navigation = [
         { title: "Home", path: "/home" },
-        { title: "Careers", path: "/main" },
-        { title: "Guides", path: "/shop" },
-        { title: "Partners", path: "/item" }
+        { title: "Shop", path: "/main" },
+        { title: "Dashboard", path: "/shop" }
     ]
     return (
         <nav className="bg-white w-full shadow-sm border-b md:border-0 md:static">
@@ -35,7 +36,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? 'block' : 'hidden'}`}>
-                    
+
                     <ul className="justify-center  items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                         {
                             navigation.map((item, idx) => {
@@ -54,20 +55,46 @@ const Navbar = () => {
                     </ul>
                     <div>
                         <ul className="flex flex-col-reverse md:hidden space-x-0 lg:space-x-6 lg:flex-row">
-                            <li className="mt-8 lg:mt-0">
-                                <Link to="/" className="btn btn-primary text-center text-white rounded-none w-full">
-                                    Sign In
-                                </Link>
-                            </li>
+                            {user?.uid ?
+                                <div className='flex justify-start items-center gap-3'>
+                                    <div className="avatar placeholder">
+                                        <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
+                                            <img src={user?.photoURL} alt="" />
+                                        </div>
+                                    </div>
+                                    <div className='text-secondary'>
+                                        <h2>{user?.displayName}</h2>
+                                        <h4>{user?.email}</h4>
+                                    </div>
+                                </div>
+                                :
+                                <li className="mt-8 lg:mt-0">
+                                    <Link to="/signup" className="btn btn-primary text-center text-white rounded-none w-full">
+                                        Sign In
+                                    </Link>
+                                </li>
+                            }
                         </ul>
                     </div>
-                    
-                    
+
+
                 </div>
                 <div className="hidden md:inline-block">
-                    <Link to="/" className="btn btn-primary text-white rounded-none ">
+                    {user?.uid ?  
+                    <div className='flex justify-start items-center gap-3'>
+                    <div className="avatar placeholder">
+                        <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
+                            <img src={user?.photoURL} alt="" />
+                        </div>
+                    </div>
+                    <div className='text-secondary'>
+                        <h2>{user?.displayName}</h2>
+                        <h4>{user?.email}</h4>
+                    </div>
+                </div>
+                    :<Link to="/signup" className="btn btn-primary text-white rounded-none ">
                         Sign In
-                    </Link>
+                    </Link>}
                 </div>
             </div>
         </nav>
