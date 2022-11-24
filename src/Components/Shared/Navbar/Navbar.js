@@ -1,15 +1,24 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { userAuth } from '../../../Contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
     const [state, setState] = useState(false)
-    const { user } = useContext(userAuth);
+    const { user, signOutSystem } = useContext(userAuth);
+    console.log(user);
     const navigation = [
         { title: "Home", path: "/home" },
         { title: "Shop", path: "/main" },
         { title: "Dashboard", path: "/shop" }
     ]
+    const handleSignOut = () => {
+        signOutSystem()
+        .then(result => {
+            toast.success(`Successfully Sign Out ${user?.displayName}`);
+        })
+        .catch(()=>{})
+    }
     return (
         <nav className="bg-white w-full shadow-sm border-b md:border-0 md:static">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -54,7 +63,7 @@ const Navbar = () => {
 
                     </ul>
                     <div>
-                        <ul className="flex flex-col-reverse md:hidden space-x-0 lg:space-x-6 lg:flex-row">
+                        <ul className="flex mt-6 flex-col-reverse md:hidden space-x-0 lg:space-x-6 lg:flex-row">
                             {user?.uid ?
                                 <div className='flex justify-start items-center gap-3'>
                                     <div className="avatar placeholder">
@@ -65,6 +74,9 @@ const Navbar = () => {
                                     <div className='text-secondary'>
                                         <h2>{user?.displayName}</h2>
                                         <h4>{user?.email}</h4>
+                                    </div>
+                                    <div>
+                                        <button onClick={handleSignOut} className='btn rounded-none btn-primary btn-sm'>LogOut</button>
                                     </div>
                                 </div>
                                 :
@@ -80,21 +92,21 @@ const Navbar = () => {
 
                 </div>
                 <div className="hidden md:inline-block">
-                    {user?.uid ?  
-                    <div className='flex justify-start items-center gap-3'>
-                    <div className="avatar placeholder">
-                        <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
-                            <img src={user?.photoURL} alt="" />
+                    {user?.uid ?
+                        <div className='flex justify-start items-center gap-3'>
+                            <div className="avatar placeholder">
+                                <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
+                                    <img src={user?.photoURL} alt="" />
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <button onClick={handleSignOut} className='btn rounded-none btn-primary btn-sm'>LogOut</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className='text-secondary'>
-                        <h2>{user?.displayName}</h2>
-                        <h4>{user?.email}</h4>
-                    </div>
-                </div>
-                    :<Link to="/signup" className="btn btn-primary text-white rounded-none ">
-                        Sign In
-                    </Link>}
+                        : <Link to="/signup" className="btn btn-primary text-white rounded-none ">
+                            Sign In
+                        </Link>}
                 </div>
             </div>
         </nav>

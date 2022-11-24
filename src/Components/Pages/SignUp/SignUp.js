@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 const SignUp = () => {
     const imagebbToken = process.env.REACT_APP_imgaebb;
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { emailSignup, setLoader, updateUser } = useContext(userAuth);
+    const { emailSignup, setLoader, updateUser, googleSignUp } = useContext(userAuth);
     const onSubmit = (data, event) => {
         const form = event.target;
         const name = data.name;
@@ -47,11 +47,19 @@ const SignUp = () => {
         
         form.reset();
     };
+    const handleGoogleSignIn = () => {
+        googleSignUp()
+        .then(result => {
+            toast.success("Google SignUp Successful");
+            setLoader(true);
+        })
+        .catch(err => console.log(err))
+    }
     return (
         <div className='w-full md:w-1/2 lg:w-1/3 mx-auto px-5 md:px-0  text-center'>
             <div className='my-5'>
                 <h1 className='text-4xl font-semibold text-primary'>SignUp</h1>
-                <p className='text-secondary mt-2'>Already have an Account, Please <Link>Sign In</Link></p>
+                <p className='text-secondary mt-2'>Already have an Account, Please <Link to="/login" className="text-primary font-semibold">Login</Link></p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
@@ -134,7 +142,7 @@ const SignUp = () => {
             </form>
             <div className="divider">OR</div>
             <div className="form-control mt-6">
-                <button className="btn btn-outline border-primary border-2 text-primary hover:text-white hover:bg-primary hover:border-primary">Sign up as a Buyer Vai Google</button>
+                <button onClick={handleGoogleSignIn} className="btn btn-outline border-primary border-2 text-primary hover:text-white hover:bg-primary hover:border-primary">Sign up as a Buyer Vai Google</button>
             </div>
         </div>
     );
