@@ -10,6 +10,7 @@ const Navbar = () => {
     const navigation = [
         { title: "Home", path: "/home" },
         { title: "Shop", path: "/main" },
+        { title: "Blog", path: "/blog" },
         { title: "Dashboard", path: "/shop" }
     ]
     const handleSignOut = () => {

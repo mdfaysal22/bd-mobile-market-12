@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     const footerNavs = [
         {
-            href: '/',
+            to: '/',
             name: 'About'
         },
         {
-            href: '/',
+            to: '/blog',
             name: 'Blog'
         },
         {
-            href: '/',
+            to: '/',
             name: 'Suuport'
         }
     ]
@@ -30,7 +30,7 @@ const Footer = () => {
                 {
                     footerNavs.map((item, idx) => (
                         <li key={idx} className=" hover:text-primary">
-                            <Link  to={item.href}>
+                            <Link  to={item.to}>
                                 { item.name }
                             </Link>
                         </li>
@@ -58,7 +58,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-            <style jsx>{`
+            <style jsx="true">{`
                 .svg-icon path,
                 .svg-icon polygon,
                 .svg-icon rect {
