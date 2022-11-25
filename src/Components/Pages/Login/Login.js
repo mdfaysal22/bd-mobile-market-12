@@ -65,7 +65,7 @@ const Login = () => {
             </form>
             <div className="divider">OR</div>
             <div className="form-control mt-6">
-                <button onClick={handleGoogleSignIn} className="btn btn-outline border-primary border-2 text-primary hover:text-white hover:bg-primary hover:border-primary">Login as a Buyer Vai Google</button>
+                <button onClick={handleGoogleSignIn} className="btn btn-outline border-primary border-2 text-primary hover:text-white hover:bg-primary hover:border-primary">Login as a Buyer By Google</button>
             </div>
         </div>
     );
