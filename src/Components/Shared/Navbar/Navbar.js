@@ -11,7 +11,7 @@ const Navbar = () => {
         { title: "Home", path: "/home" },
         { title: "Shop", path: "/main" },
         { title: "Blog", path: "/blog" },
-        { title: "Dashboard", path: "/shop" }
+        { title: "Dashboard", path: "/dashboard" }
     ]
     const handleSignOut = () => {
         signOutSystem()

@@ -70,6 +70,25 @@ const SignUp = () => {
     const handleGoogleSignIn = () => {
         googleSignUp()
         .then(result => {
+            const name = result.user.displayName;
+            const email = result.user.email;
+            const role = "buyer"
+            const newUser = {
+                name, 
+                email,
+                role
+            }
+            fetch('http://localhost:5000/users', {
+                                method: "POST",
+                                headers:{
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(newUser)
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                
+                            });
             toast.success("Google SignUp Successful");
             setLoader(true);
 
