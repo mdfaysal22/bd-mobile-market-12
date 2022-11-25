@@ -15,10 +15,10 @@ const Navbar = () => {
     ]
     const handleSignOut = () => {
         signOutSystem()
-        .then(result => {
-            toast.success(`Successfully Sign Out ${user?.displayName}`);
-        })
-        .catch(()=>{})
+            .then(result => {
+                toast.success(`Successfully Sign Out ${user?.displayName}`);
+            })
+            .catch(() => { })
     }
     return (
         <nav className="bg-white w-full shadow-sm border-b md:border-0 md:static">
@@ -66,15 +66,17 @@ const Navbar = () => {
                     <div>
                         <ul className="flex mt-6 flex-col-reverse md:hidden space-x-0 lg:space-x-6 lg:flex-row">
                             {user?.uid ?
-                                <div className='flex justify-start items-center gap-3'>
-                                    <div className="avatar placeholder">
-                                        <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
-                                            <img src={user?.photoURL} alt="" />
+                                <div className='flex justify-between items-center'>
+                                    <div className='flex justify-start items-center gap-3'>
+                                        <div className="avatar placeholder">
+                                            <div className="bg-neutral-focus text-neutral-content rounded-full w-14">
+                                                <img src={user?.photoURL} alt="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className='text-secondary'>
-                                        <h2>{user?.displayName}</h2>
-                                        <h4>{user?.email}</h4>
+                                        <div className='text-secondary'>
+                                            <h2>{user?.displayName}</h2>
+                                            <h4>{user?.email}</h4>
+                                        </div>
                                     </div>
                                     <div>
                                         <button onClick={handleSignOut} className='btn rounded-none btn-primary btn-sm'>LogOut</button>
@@ -100,7 +102,7 @@ const Navbar = () => {
                                     <img src={user?.photoURL} alt="" />
                                 </div>
                             </div>
-                            
+
                             <div>
                                 <button onClick={handleSignOut} className='btn rounded-none btn-primary btn-sm'>LogOut</button>
                             </div>

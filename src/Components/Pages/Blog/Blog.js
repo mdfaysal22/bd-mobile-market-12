@@ -32,7 +32,7 @@ const Blog = () => {
     return (
         <div>
             {
-                articles.map((article, index) => <SingleBlog key={index} article={article}></SingleBlog>)
+                articles.map((article, index) => <SingleBlog index={index} key={index} article={article}></SingleBlog>)
             }
         </div>
     );
