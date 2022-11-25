@@ -9,10 +9,12 @@ const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { emailSignup, setLoader, updateUser, googleSignUp } = useContext(userAuth);
     const onSubmit = (data, event) => {
+        
         const form = event.target;
         const name = data.name;
         const email = data.email;
         const pass = data.password;
+        const role = data.role;
         const img = data.image[0];
         const formData = new FormData();
         formData.append('image', img);
@@ -31,8 +33,26 @@ const SignUp = () => {
     
                     updateUser(name, imgURL)
                         .then(result => {
-                            toast.success("SignUp Successfully");
+                            
                             setLoader(true)
+                            const newUser = {
+                                name, 
+                                email,
+                                role
+                            }
+
+                            fetch('http://localhost:5000/users', {
+                                method: "POST",
+                                headers:{
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(newUser)
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                toast.success("SignUp Successfully");
+                            });
+                            
                         })
                         .catch(err => () => {
                             const errorMassage = err.massage;
@@ -52,6 +72,7 @@ const SignUp = () => {
         .then(result => {
             toast.success("Google SignUp Successful");
             setLoader(true);
+
         })
         .catch(err => console.log(err))
     }
@@ -130,10 +151,9 @@ const SignUp = () => {
                     <label className='label'>
                         <span className='label-text text-secondary'>Sign Up As a </span>
                     </label>
-                    <select {...register("userType")} defaultValue={'buyer'} className="select text-secondary select-bordered w-full">
+                    <select {...register("role")} defaultValue={'buyer'} className="select text-secondary select-bordered w-full">
                         <option value="buyer">Buyer</option>
                         <option value="seller">Seller</option>
-                        <option value="admin">Admin</option>
                     </select>
                 </div>
                 <div className="form-control mt-6">
