@@ -22,7 +22,7 @@ const AdsCard = ({adsProduct}) => {
 
 
                         <h3 className="text-2xl font-semibold leading-none tracking-tighter text-secondary">{ProductName}</h3>
-                        <p className="text-lg mt-3 font-normal text-gray-500">{description.slice(0, 100)}...</p>
+                        <p className="text-lg mt-3 font-normal text-gray-500">{description?.slice(0, 100)}...</p>
 
 
                         <h3 className='text-secondary'>Price :$<span className='line-through'>{OriginalPrice}</span> <span className='semibold '> {ResellingPrice}</span></h3>

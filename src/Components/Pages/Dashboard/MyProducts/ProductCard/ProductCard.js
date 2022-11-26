@@ -1,47 +1,66 @@
 import React from 'react';
+import toast from 'react-hot-toast';
+import {BsTrash} from 'react-icons/bs'
 
-const ProductCard = ({ product }) => {
-    const {PostDate, ProductName, description, quality, OriginalPrice, ResellingPrice, productImg } = product;
+const ProductCard = ({ product, refetch }) => {
+    const { _id,PostDate,status, ProductName, description, quality, OriginalPrice, ResellingPrice, productImg } = product;
     const handleAds = () => {
         fetch(`http://localhost:5000/advertising`, {
             method: "POST",
             headers: {
-                "content-type" : "application/json"
+                "content-type": "application/json"
             },
-            body:JSON.stringify(product)
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success("Ads Section Added Successfully");
+                
+            });
+    }
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/advertising/${id}`, {
+            method: "DELETE"
         })
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => console.log(data))
+
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+            refetch()
+        })
+
     }
     return (
         <div>
-            <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
-
-                <div className="flex-shrink-0">
-                    <img className="object-cover w-full h-48 rounded-lg" src={productImg} alt="" />
-                </div>
-
-                <div className="flex flex-col justify-between flex-1">
-
-                    <div className="flex-1">
-
-                        <div className="flex pt-6 space-x-1 text-sm text-gray-500">
-                            <span> Post:  </span>
-                            <span> {PostDate} </span>
-                            <span> Quality : {quality} </span>
-                        </div>
+            <div className="flex flex-col md:flex-row justify-between items-center border-t-2 border-b-2 py-2">
 
 
-                        <h3 className="text-2xl font-semibold leading-none tracking-tighter text-secondary">{ProductName}</h3>
-                        <p className="text-lg mt-3 font-normal text-gray-500">{description.slice(0, 100)}...</p>
+                <div className='flex justify-start gap-3'>
+                    <img className="object-cover w-20 h-20 rounded-lg" src={productImg} alt="" />
 
 
-                        <h3 className='text-secondary'>Price :$<span className='line-through'>{OriginalPrice}</span> <span className='semibold '> {ResellingPrice}</span></h3>
 
-                        <div className='text-center mt-5'><button onClick={handleAds} className='btn btn-wide btn-primary btn-sm'>Advertising</button></div>
+
+                    <div>
+
+                        <h3 className="text-xl leading-none tracking-tighter text-secondary">{ProductName}</h3>
+                        <h3 className='text-secondary'>Price :$<span className='semibold '> {ResellingPrice}</span></h3>
+                        <h4 className='text-secondary'>Status : {status}</h4>
+
+
                     </div>
                 </div>
+                <div className='flex justify-center items-center gap-3'>
+                    {status === "unsold"  && <button onClick={handleAds} className='btn bg-green-700 hover:bg-green-900 btn-sm'>Ads</button>}
+                    <button onClick={() => handleDelete(_id)} className='btn btn-primary btn-sm'><BsTrash></BsTrash></button>
+                </div>
+
             </div>
+
         </div>
     );
 };

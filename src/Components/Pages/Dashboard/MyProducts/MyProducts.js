@@ -7,7 +7,7 @@ import ProductCard from './ProductCard/ProductCard';
 const MyProducts = () => {
     const {user} = useContext(userAuth);
     const email = user.email;
-    const {data:products = [], isLoading} = useQuery({
+    const {data:products = [], isLoading, refetch} = useQuery({
         queryKey: ["products", email],
         queryFn: () => 
             fetch(`http://localhost:5000/products?email=${email}`)
@@ -28,8 +28,8 @@ const MyProducts = () => {
             <div>
                 <h1 className='text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-800 via-orange-500 to-orange-400'>My Recent Added Products {products.length}</h1>
             </div>
-            <div className='grid grid-cols-1 mt-5 gap-3 md:grid-cols-3'>
-                {products.map(product => <ProductCard key={product._id} product={product}></ProductCard>)}
+            <div className='flex flex-col gap-3 mt-5'>
+                {products.map(product => <ProductCard refetch={refetch} key={product._id} product={product}></ProductCard>)}
             </div>
         </div>
     );

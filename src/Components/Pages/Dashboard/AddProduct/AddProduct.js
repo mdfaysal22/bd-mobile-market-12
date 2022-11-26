@@ -26,11 +26,13 @@ const AddProduct = () => {
                     const imgURL = result.data.url;
                     const ProductName = data.ProductName;
                     const BrandName = data.brandName;
+                    const PhoneNumber = data.phoneNumber;
                     const OriginalPrice = data.OriginalPrice;
                     const ResellingPrice = data.ResellingPrice;
                     const usedYear = data.UseYear;
                     const current = new Date();
                     const PostDate = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+                    const status = "unsold";
                     const name = user?.displayName;
                     const description = data.ProductDescription;
                     const location = data.Location;
@@ -48,6 +50,8 @@ const AddProduct = () => {
                         location,
                         quality,
                         email,
+                        status,
+                        PhoneNumber,
                         productImg: imgURL
                     }
 
@@ -192,12 +196,21 @@ const AddProduct = () => {
                         </select>
                     </div>
                 </div>
+                <div className='flex justify-start flex-col md:flex-row gap-5 items-center'>
+                <div className='form-control w-full'>
+                    <label className='label'>
+                        <span className='label-text text-secondary'>Phone Number</span>
+                    </label>
+                    <input {...register("phoneNumber")} type="number" placeholder="Phone Number" className="input  focus:text-secondary text-secondary input-bordered" />
+
+                </div>
                 <div className='form-control w-full'>
                     <label className='label'>
                         <span className='label-text text-secondary'>Location</span>
                     </label>
                     <input {...register("Location")} type="text" placeholder="Your Location" className="input  focus:text-secondary text-secondary input-bordered" />
 
+                </div>
                 </div>
 
                 <div className="text-center mt-6">
