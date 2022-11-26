@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { userAuth } from '../../../../Contexts/AuthContext';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
+    const navigate = useNavigate();
     const imagebbToken = process.env.REACT_APP_imgaebb;
     const { user } = useContext(userAuth);
     const { register, handleSubmit } = useForm();
@@ -12,7 +14,7 @@ const AddProduct = () => {
         const img = data.ProductPhoto[0];
         const formData = new FormData();
         formData.append('image', img);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imagebbToken}`;
+        const url = `https://api.imgbb.com/1/upload?key=${imagebbToken}`;
         fetch(url, {
             method: "POST",
             body: formData
@@ -60,6 +62,7 @@ const AddProduct = () => {
                         .then(data => {
                             toast.success("Product Added");
                             form.reset();
+                            navigate('/dashboard/myproducts')
 
                         });
                 }

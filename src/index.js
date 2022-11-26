@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContext from './Contexts/AuthContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContext>

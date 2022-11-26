@@ -18,7 +18,7 @@ const SignUp = () => {
         const img = data.image[0];
         const formData = new FormData();
         formData.append('image', img);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imagebbToken}`;
+        const url = `https://api.imgbb.com/1/upload?key=${imagebbToken}`;
         fetch(url, {
             method: "POST",
             body: formData

@@ -9,7 +9,7 @@ const Navbar = () => {
     console.log(user);
     const navigation = [
         { title: "Home", path: "/home" },
-        { title: "Shop", path: "/main" },
+        { title: "Shop", path: "/shop" },
         { title: "Blog", path: "/blog" },
         { title: "Dashboard", path: "/dashboard" }
     ]

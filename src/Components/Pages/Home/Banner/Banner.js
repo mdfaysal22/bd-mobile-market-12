@@ -5,7 +5,7 @@ import bannerImage from '../../../../Assets/phone.jpg';
 const Banner = () => {
     return (
         <div className="bg-white py-6 sm:py-8 lg:py-12">
-            <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
+            <div className="max-w-screen-2xl">
                 <div className="md:h-[25rem] flex flex-col sm:flex-row bg-primary rounded-lg overflow-hidden">
 
                     <div className="w-full sm:w-1/2 lg:w-2/5 flex flex-col justify-center p-4 sm:p-8">
