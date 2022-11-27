@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Loading from '../../../Shared/Loading/Loading';
 import {MdVerified} from 'react-icons/md';
 
-const ShopCard = ({product}) => {
+const ShopCard = ({product, SetProductData}) => {
     const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, status,location, quality, OriginalPrice, ResellingPrice, productImg } = product;
     const {data: user = [], isLoading} = useQuery({
         queryKey: ['verifieduser', email],
@@ -63,11 +62,19 @@ const ShopCard = ({product}) => {
 
 
 
+                        <div className='flex flex-col gap-3 justify-between item-center'>
+                        <label onClick={()=> SetProductData(product)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
+                        Book Now
+                        </label>
+                        <button className='btn btn-sm btn-primary'>
+                            Report
+                        </button>
+                        </div>
                         
-
-                        <Link to={`/shop/${_id}`} className='text-center mt-5'><button className='btn btn-wide btn-primary btn-sm'>See Details</button></Link>
+                        
                     </div>
                 </div>
+                
             </div>
         </div>
     );

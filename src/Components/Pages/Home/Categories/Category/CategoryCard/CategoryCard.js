@@ -4,7 +4,7 @@ import React from 'react';
 import { MdVerified } from 'react-icons/md';
 import Loading from '../../../../../Shared/Loading/Loading';
 
-const CategoryCard = ({caregoryProduct}) => {
+const CategoryCard = ({caregoryProduct, SetProductData}) => {
     const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, status,location, quality, OriginalPrice, ResellingPrice, productImg} = caregoryProduct;
     const {data: user = [], isLoading} = useQuery({
         queryKey: ['verifieduser', email],
@@ -55,7 +55,14 @@ const CategoryCard = ({caregoryProduct}) => {
                             </div>
                         </div>
 
-                        <div className='text-center mt-5'><button className='btn btn-wide btn-primary btn-sm'>See Details</button></div>
+                        <div className='flex flex-col gap-3'>
+                        <label onClick={()=> SetProductData(caregoryProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
+                        Book Now
+                        </label>
+                        <button className='btn btn-sm btn-primary'>
+                            Report
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
