@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { userAuth } from '../../../Contexts/AuthContext';
 
 const ModalBody = ({ productData, refetch, SetProductData }) => {
-    const { PostDate, _id, ProductName, usedYear, email, name, PhoneNumber, status, location, quality, OriginalPrice, ResellingPrice, productImg } = productData;
+    const {  _id, ProductName,  email, name, PhoneNumber,  location,  ResellingPrice, productImg } = productData;
     const { user } = useContext(userAuth);
 
 
@@ -16,6 +16,7 @@ const ModalBody = ({ productData, refetch, SetProductData }) => {
             SellerName: name,
             SellerPhone: PhoneNumber,
             SellerEmail: email,
+            ResellingPrice,
             BuyerName: user?.displayName,
             BuyerEmail: user?.email,
             BuyerPhone: form.BuyerPhone.value,
@@ -73,7 +74,7 @@ const ModalBody = ({ productData, refetch, SetProductData }) => {
                             <label className="label">
                                 <span className="label-text text-secondary">Phone Number</span>
                             </label>
-                            <input type="number" name='BuyerPhone' placeholder="Phone Number" className="input text-black input-bordered w-full" />
+                            <input type="number" required name='BuyerPhone' placeholder="Phone Number" className="input text-black input-bordered w-full" />
 
                         </div>
 
@@ -81,7 +82,7 @@ const ModalBody = ({ productData, refetch, SetProductData }) => {
                             <label className="label">
                                 <span className="label-text text-secondary">Meeting Location</span>
                             </label>
-                            <input type="text" name='location' placeholder="Meeting Location" className="input text-black input-bordered w-full" />
+                            <input type="text" required name='location' placeholder="Meeting Location" className="input text-black input-bordered w-full" />
 
                         </div>
 
