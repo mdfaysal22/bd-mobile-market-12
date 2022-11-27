@@ -1,9 +1,13 @@
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
 import {BsTrash} from 'react-icons/bs'
+import Loading from '../../../../Shared/Loading/Loading';
 
-const ProductCard = ({ product, refetch }) => {
+const ProductCard = ({ product, refetchFun }) => {
     const { _id,PostDate,status, ProductName, description, quality, OriginalPrice, ResellingPrice, productImg } = product;
+    
     const handleAds = () => {
         fetch(`http://localhost:5000/advertising`, {
             method: "POST",
@@ -16,8 +20,18 @@ const ProductCard = ({ product, refetch }) => {
             .then(data => {
                 toast.success("Ads Section Added Successfully");
                 
+                refetch()
             });
     }
+
+    const {data: alreadyAds = [], refetch, isLoading} = useQuery({
+        queryKey: ["advertising"],
+        queryFn: async() => {
+            const res = await axios.get(`http://localhost:5000/advertising`)
+            return res.data;
+        }
+    })
+    const myAds = alreadyAds.find(ads => ads?._id === _id);
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/advertising/${id}`, {
             method: "DELETE"
@@ -29,12 +43,12 @@ const ProductCard = ({ product, refetch }) => {
             })
             .then(res => res.json())
             .then(data => {
-                refetch()
+                refetchFun()
             })
         })
-
-        
-
+    }
+    if(isLoading){
+        return <Loading></Loading>
     }
     return (
         <div>
@@ -42,7 +56,7 @@ const ProductCard = ({ product, refetch }) => {
 
 
                 <div className='flex justify-start gap-3'>
-                    <img className="object-cover w-20 h-20 rounded-lg" src={productImg} alt="" />
+                    <img className=" w-20 h-20 rounded-lg" src={productImg} alt="" />
 
 
 
@@ -57,7 +71,7 @@ const ProductCard = ({ product, refetch }) => {
                     </div>
                 </div>
                 <div className='flex justify-center items-center gap-3'>
-                    {status === "unsold"  && <button onClick={handleAds} className='btn bg-green-700 hover:bg-green-900 btn-sm'>Ads</button>}
+                    {status === "unsold" && !myAds && <button onClick={handleAds} className='btn bg-green-700 hover:bg-green-900 btn-sm'>Ads</button>}
                     <button onClick={() => handleDelete(_id)} className='btn btn-primary btn-sm'><BsTrash></BsTrash></button>
                 </div>
 
