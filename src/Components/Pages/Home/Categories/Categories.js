@@ -32,7 +32,7 @@ const Categories = () => {
         </div>
         <div className='mt-5 flex flex-col md:flex-row justify-center gap-5 items-center'>
             
-            {categories.map(category => <Link className='bg-black rounded-lg' key={category.id} to={`/shop/${category.categoryId}`}>
+            {categories.map(category => <Link className='bg-black rounded-lg' key={category.id} to={`/${category.categoryId}`}>
                 <div className="flex flex-col justify-center text-white p-5 items-center cursor-pointer">
 
                     <div>
