@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { userAuth } from '../../../Contexts/AuthContext';
 import toast from 'react-hot-toast';
+import useTitle from '../../Hooks/useTitle';
 
 const Login = () => {
+    useTitle("Login");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const {emailSignIn, googleSignUp, setLoader } = useContext(userAuth);
     const onSubmit = (data, e) => {

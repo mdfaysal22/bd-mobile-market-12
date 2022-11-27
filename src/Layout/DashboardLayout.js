@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import {HiBars3BottomLeft} from 'react-icons/hi2'
 import { userAuth } from '../Contexts/AuthContext';
+import useTitle from '../Components/Hooks/useTitle';
 
 const DashboardLayout = () => {
+    useTitle("Dashboard")
     const {user} = useContext(userAuth);
     const name = user?.displayName;
     return (

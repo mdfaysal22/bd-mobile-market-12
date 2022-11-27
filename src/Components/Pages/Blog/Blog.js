@@ -1,7 +1,9 @@
 import React from 'react';
+import useTitle from '../../Hooks/useTitle';
 import SingleBlog from './SingleBlog/SingleBlog';
 
 const Blog = () => {
+    useTitle("Blog");
     const articles = [
         {
             title: "What are the different ways to manage a state in a React application?",

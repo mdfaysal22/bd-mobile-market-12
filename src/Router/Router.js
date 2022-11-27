@@ -12,7 +12,6 @@ import Login from "../Components/Pages/Login/Login";
 import Shop from "../Components/Pages/Shop/Shop";
 import SignUp from "../Components/Pages/SignUp/SignUp";
 import Error from "../Components/Shared/Error/Error";
-import ProductDetails from "../Components/Shared/ProductDetails/ProductDetails";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 
@@ -33,11 +32,6 @@ export const router = createBrowserRouter([
             {
                 path:"/shop",
                 element: <Shop></Shop>
-            },
-            {
-                path:'/shop/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/allproducts/${params.id}`),
-                element:<ProductDetails></ProductDetails>
             },
             {
                 path:'/home',

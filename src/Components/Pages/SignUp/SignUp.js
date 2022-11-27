@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { userAuth } from "../../../Contexts/AuthContext";
 import toast from 'react-hot-toast';
+import useTitle from "../../Hooks/useTitle";
 
 const SignUp = () => {
+    useTitle("SignUp")
     const imagebbToken = process.env.REACT_APP_imgaebb;
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { emailSignup, setLoader, updateUser, googleSignUp } = useContext(userAuth);

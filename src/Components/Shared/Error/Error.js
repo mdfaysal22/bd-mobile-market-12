@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../Hooks/useTitle';
 
 const Error = () => {
+    useTitle("404 Page");
     return (
         <div className='hero min-h-screen'>
             <div className="bg-white hero-content py-6 sm:py-8 lg:py-12">

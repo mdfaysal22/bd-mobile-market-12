@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
+import useTitle from '../../Hooks/useTitle';
 import ModalBody from '../../Shared/ModalBody/ModalBody';
 import ShopCard from './ShopCard/ShopCard';
 
 const Shop = () => {
+    useTitle("Shop")
     const [productData, SetProductData] = useState(null);
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allproducts'],
