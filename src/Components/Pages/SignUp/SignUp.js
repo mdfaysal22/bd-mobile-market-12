@@ -36,7 +36,8 @@ const SignUp = () => {
                             
                             setLoader(true)
                             const newUser = {
-                                name, 
+                                name,
+                                imgURL, 
                                 email,
                                 role
                             }
