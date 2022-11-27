@@ -80,7 +80,7 @@ const AddProduct = () => {
 
     };
     return (
-        <div className='m-10'>
+        <div>
             <h1 className='text-2xl md:text-5xl font-semibold text-primary'>Add Product</h1>
             <form className='mt-5 flex w-full flex-col gap-3' onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">

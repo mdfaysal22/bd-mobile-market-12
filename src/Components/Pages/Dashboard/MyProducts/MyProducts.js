@@ -24,7 +24,7 @@ const MyProducts = () => {
 
     
     return (
-        <div className='m-10'>
+        <div>
             <div>
                 <h1 className='text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-800 via-orange-500 to-orange-400'>My Recent Added Products {products.length}</h1>
             </div>

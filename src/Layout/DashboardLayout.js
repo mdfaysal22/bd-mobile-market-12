@@ -19,7 +19,9 @@ const DashboardLayout = () => {
 
                 </div>
 
+                <div className='m-10'>
                 <Outlet></Outlet>
+                </div>
 
 
             </div>
@@ -31,6 +33,7 @@ const DashboardLayout = () => {
                     <div className='flex flex-col gap-3'>
                     <Link to="/dashboard/myproducts"><button className='btn btn-primary w-full'>My Product</button></Link>
                     <Link to='/dashboard/addproduct'><button className='btn btn-primary w-full'>Add Product</button></Link>
+                    <Link to='/dashboard/allseller'><button className='btn btn-primary w-full'>All Seller</button></Link>
                     </div>
                 </div>
 
