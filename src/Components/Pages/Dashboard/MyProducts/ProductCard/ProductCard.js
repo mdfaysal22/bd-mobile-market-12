@@ -23,15 +23,17 @@ const ProductCard = ({ product, refetch }) => {
             method: "DELETE"
         })
         .then(res => res.json())
-        .then(data => console.log(data))
-
-        fetch(`http://localhost:5000/products/${id}`, {
-            method: "DELETE"
-        })
-        .then(res => res.json())
         .then(data => {
-            refetch()
+            fetch(`http://localhost:5000/products/${id}`, {
+                method: "DELETE"
+            })
+            .then(res => res.json())
+            .then(data => {
+                refetch()
+            })
         })
+
+        
 
     }
     return (

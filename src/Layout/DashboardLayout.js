@@ -34,6 +34,7 @@ const DashboardLayout = () => {
                     <Link to="/dashboard/myproducts"><button className='btn btn-primary w-full'>My Product</button></Link>
                     <Link to='/dashboard/addproduct'><button className='btn btn-primary w-full'>Add Product</button></Link>
                     <Link to='/dashboard/allseller'><button className='btn btn-primary w-full'>All Seller</button></Link>
+                    <Link to='/dashboard/allbuyer'><button className='btn btn-primary w-full'>All Buyer</button></Link>
                     </div>
                 </div>
 
