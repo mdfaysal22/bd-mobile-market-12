@@ -5,6 +5,7 @@ import AllBuyer from "../Components/Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../Components/Pages/Dashboard/AllSeller/AllSeller";
 import MyOrder from "../Components/Pages/Dashboard/MyOrder/MyOrder";
 import MyProducts from "../Components/Pages/Dashboard/MyProducts/MyProducts";
+import ReportedItem from "../Components/Pages/Dashboard/ReportedItem/ReportedItem";
 import Category from "../Components/Pages/Home/Categories/Category/Category";
 import Home from "../Components/Pages/Home/Home";
 import Login from "../Components/Pages/Login/Login";
@@ -13,6 +14,7 @@ import SignUp from "../Components/Pages/SignUp/SignUp";
 import Error from "../Components/Shared/Error/Error";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import AdminPrivateRoute from "../PrivateRoute/AdminPrivateRoute";
 import BuyerPrivateRoute from "../PrivateRoute/BuyerPrivateRoute";
 import SellerOrBuyer from "../PrivateRoute/SellerOrBuyer";
 import SellerPrivateRoute from "../PrivateRoute/SellerPrivateRoute";
@@ -65,15 +67,19 @@ export const router = createBrowserRouter([
                     },
                     {
                         path:"/dashboard/allseller",
-                        element: <AllSeller></AllSeller>
+                        element: <AdminPrivateRoute><AllSeller></AllSeller></AdminPrivateRoute>
                     },
                     {
                         path:"/dashboard/allbuyer",
-                        element:<AllBuyer></AllBuyer>
+                        element: <AdminPrivateRoute><AllBuyer></AllBuyer></AdminPrivateRoute>
                     },
                     {
                         path:'/dashboard/myorders',
                         element: <BuyerPrivateRoute><MyOrder></MyOrder></BuyerPrivateRoute>
+                    },
+                    {
+                        path:"/dashboard/reporteditems",
+                        element: <AdminPrivateRoute><ReportedItem></ReportedItem></AdminPrivateRoute>
                     }
                 ]
             }

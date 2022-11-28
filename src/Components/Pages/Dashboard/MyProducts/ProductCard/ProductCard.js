@@ -6,7 +6,7 @@ import {BsTrash} from 'react-icons/bs'
 import Loading from '../../../../Shared/Loading/Loading';
 
 const ProductCard = ({ product, refetchFun }) => {
-    const { _id,PostDate,status, ProductName, description, quality, OriginalPrice, ResellingPrice, productImg } = product;
+    const { _id,status, ProductName, ResellingPrice, productImg } = product;
     
     const handleAds = () => {
         fetch(`http://localhost:5000/advertising`, {

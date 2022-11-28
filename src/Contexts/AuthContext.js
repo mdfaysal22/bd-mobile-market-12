@@ -50,7 +50,7 @@ const AuthContext = ({ children }) => {
         return () => {
             unsubscribe();
         }
-    }, [])
+    }, [user])
     const authInfo = { user, loader,setLoader, emailSignup, passwordReset, signOutSystem, updateUser, emailSignIn, googleSignUp }
     return (
         <userAuth.Provider value={authInfo}>

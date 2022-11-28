@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { userAuth } from '../../../../Contexts/AuthContext';
 import useBuyer from '../../../Hooks/useBuyer';
 import ModalBody from '../../../Shared/ModalBody/ModalBody';
@@ -16,6 +17,20 @@ const AdsProduct = () => {
 
     })
 
+    const handleReportedItem = id => {
+        fetch(`http://localhost:5000/allproducts/${id}`, {
+            method: "PUT"
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.matchedCount === 1){
+                toast.success("Report Successful")
+            }
+            
+        })
+
+    }
+
     return (
         <div className='mt-5'>
             {
@@ -26,7 +41,7 @@ const AdsProduct = () => {
 
                     <div className='grid grid-cols-1 sm:grid-cols-2 mt-5 gap-3 md:grid-cols-3 lg:grid-cols-4 '>
                         {
-                            adsProducts.map(adsProduct => <AdsCard isBuyer={isBuyer} key={adsProduct._id} SetProductData={SetProductData} adsProduct={adsProduct}></AdsCard>)
+                            adsProducts.map(adsProduct => <AdsCard handleReportedItem={handleReportedItem} isBuyer={isBuyer} key={adsProduct._id} SetProductData={SetProductData} adsProduct={adsProduct}></AdsCard>)
                         }
                     </div>
                 </>

@@ -51,6 +51,7 @@ const DashboardLayout = () => {
                             <>
                                 <Link to='/dashboard/allseller'><button className='btn btn-primary w-full'>All Seller</button></Link>
                                 <Link to='/dashboard/allbuyer'><button className='btn btn-primary w-full'>All Buyer</button></Link>
+                                <Link to='/dashboard/reporteditems'><button className='btn btn-primary w-full'>Reported Products</button></Link>
                             </>
                         }
                         {

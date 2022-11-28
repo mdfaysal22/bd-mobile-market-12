@@ -6,7 +6,7 @@ import { MdVerified } from 'react-icons/md';
 import useBuyer from '../../../Hooks/useBuyer';
 import { Link } from 'react-router-dom';
 
-const ShopCard = ({ product, currentUser, SetProductData }) => {
+const ShopCard = ({ product, currentUser, SetProductData, handleReportedItem }) => {
 
     const { PostDate, _id, ProductName, usedYear, email, name, PhoneNumber, status, location, quality, OriginalPrice, ResellingPrice, productImg } = product;
     const [isBuyer] = useBuyer(currentUser)
@@ -25,6 +25,7 @@ const ShopCard = ({ product, currentUser, SetProductData }) => {
     }
     const userInfo = user?.[0]
     // const {imgURL, verified} = userInfo;
+    
 
     return (
         <div>
@@ -72,7 +73,7 @@ const ShopCard = ({ product, currentUser, SetProductData }) => {
                                     <label onClick={() => SetProductData(product)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
                                         Book Now
                                     </label>
-                                    <button className='btn btn-sm btn-primary'>
+                                    <button onClick={() => handleReportedItem(_id)} className='btn btn-sm btn-primary'>
                                         Report
                                     </button>
                                 </>

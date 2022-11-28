@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import useBuyer from '../../../../../Hooks/useBuyer';
 import Loading from '../../../../../Shared/Loading/Loading';
 
-const CategoryCard = ({ caregoryProduct, SetProductData, currentUser }) => {
+const CategoryCard = ({ caregoryProduct, SetProductData, currentUser, handleReportedItem }) => {
     const [isBuyer] = useBuyer(currentUser)
     const { PostDate, _id, ProductName, usedYear, email, name, PhoneNumber, status, location, quality, OriginalPrice, ResellingPrice, productImg } = caregoryProduct;
     const { data: user = [], isLoading } = useQuery({
@@ -64,7 +64,7 @@ const CategoryCard = ({ caregoryProduct, SetProductData, currentUser }) => {
                                     <label onClick={() => SetProductData(caregoryProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
                                         Book Now
                                     </label>
-                                    <button className='btn btn-sm btn-primary'>
+                                    <button onClick={() => handleReportedItem(_id)} className='btn btn-sm btn-primary'>
                                         Report
                                     </button>
                                 </>

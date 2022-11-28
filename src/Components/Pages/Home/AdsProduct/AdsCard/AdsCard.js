@@ -5,8 +5,8 @@ import { MdVerified } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
 
-const AdsCard = ({adsProduct, SetProductData, isBuyer}) => {
-    const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, status,location, quality, OriginalPrice, ResellingPrice, productImg} = adsProduct;
+const AdsCard = ({adsProduct, SetProductData, isBuyer, handleReportedItem}) => {
+    const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, location, quality, OriginalPrice, ResellingPrice, productImg} = adsProduct;
     const {data: user = [], isLoading} = useQuery({
         queryKey: ['verifieduser', email],
         queryFn: async() => {
@@ -62,7 +62,7 @@ const AdsCard = ({adsProduct, SetProductData, isBuyer}) => {
                             <label onClick={()=> SetProductData(adsProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
                             Book Now
                             </label>
-                            <button className='btn btn-sm btn-primary'>
+                            <button onClick={() => handleReportedItem(_id)} className='btn btn-sm btn-primary'>
                                 Report
                             </button>
                             </>

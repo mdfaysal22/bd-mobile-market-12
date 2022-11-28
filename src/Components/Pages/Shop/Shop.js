@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { userAuth } from '../../../Contexts/AuthContext';
 import useTitle from '../../Hooks/useTitle';
 import ModalBody from '../../Shared/ModalBody/ModalBody';
@@ -9,7 +10,7 @@ import ShopCard from './ShopCard/ShopCard';
 const Shop = () => {
     useTitle("Shop")
     const {user} = useContext(userAuth);
-    const currentUser = user?.email
+    const currentUser = user?.email;  
     const [productData, SetProductData] = useState(null);
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allproducts'],
@@ -20,7 +21,19 @@ const Shop = () => {
 
     })
 
-    
+    const handleReportedItem = id => {
+        fetch(`http://localhost:5000/allproducts/${id}`, {
+            method: "PUT"
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.matchedCount === 1){
+                toast.success("Report Successful")
+            }
+            
+        })
+
+    }
     
     return (
         <div className='mx-10'>
@@ -28,7 +41,7 @@ const Shop = () => {
                 <h1>Welcome to Our Online Shop</h1>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
-                {allProducts.map(product => <ShopCard currentUser={currentUser} SetProductData={SetProductData} key={product._id} product={product}></ShopCard>)}
+                {allProducts.map(product => <ShopCard handleReportedItem={handleReportedItem} currentUser={currentUser} SetProductData={SetProductData} key={product._id} product={product}></ShopCard>)}
             </div>
 
 
