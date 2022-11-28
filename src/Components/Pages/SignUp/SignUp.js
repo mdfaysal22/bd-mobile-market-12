@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userAuth } from "../../../Contexts/AuthContext";
 import toast from 'react-hot-toast';
 import useTitle from "../../Hooks/useTitle";
 
 const SignUp = () => {
     useTitle("SignUp")
+    const navigate = useNavigate()
     const imagebbToken = process.env.REACT_APP_imgaebb;
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { emailSignup, setLoader, updateUser, googleSignUp } = useContext(userAuth);
@@ -54,6 +55,7 @@ const SignUp = () => {
                             .then(res => res.json())
                             .then(data => {
                                 toast.success("SignUp Successfully");
+                                navigate('/')
                             });
                             
                         })

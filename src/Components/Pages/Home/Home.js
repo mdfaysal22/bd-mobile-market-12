@@ -1,4 +1,5 @@
 import React from 'react';
+import BuyerPrivateRoute from '../../../PrivateRoute/BuyerPrivateRoute';
 import useTitle from '../../Hooks/useTitle';
 import AdsProduct from './AdsProduct/AdsProduct';
 import Banner from './Banner/Banner';

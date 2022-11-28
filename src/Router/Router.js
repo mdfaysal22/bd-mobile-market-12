@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../Components/Pages/Blog/Blog";
 import AddProduct from "../Components/Pages/Dashboard/AddProduct/AddProduct";
@@ -14,6 +13,9 @@ import SignUp from "../Components/Pages/SignUp/SignUp";
 import Error from "../Components/Shared/Error/Error";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import BuyerPrivateRoute from "../PrivateRoute/BuyerPrivateRoute";
+import SellerOrBuyer from "../PrivateRoute/SellerOrBuyer";
+import SellerPrivateRoute from "../PrivateRoute/SellerPrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -27,11 +29,11 @@ export const router = createBrowserRouter([
             {
                 path: "/:category",
                 loader: ({params}) => fetch(`http://localhost:5000/allproducts/${params.category}`),
-                element: <Category></Category>
+                element: <SellerOrBuyer><Category></Category></SellerOrBuyer>
             },
             {
                 path:"/shop",
-                element: <Shop></Shop>
+                element: <SellerOrBuyer><Shop></Shop></SellerOrBuyer>
             },
             {
                 path:'/home',
@@ -55,11 +57,11 @@ export const router = createBrowserRouter([
                 children:[
                     {
                         path:'/dashboard/addproduct',
-                        element:<AddProduct></AddProduct>
+                        element:<SellerPrivateRoute><AddProduct></AddProduct></SellerPrivateRoute>
                     },
                     {
                         path:'/dashboard/myproducts',
-                        element:<MyProducts></MyProducts>
+                        element:<SellerPrivateRoute><MyProducts></MyProducts></SellerPrivateRoute>
                     },
                     {
                         path:"/dashboard/allseller",
@@ -71,7 +73,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path:'/dashboard/myorders',
-                        element: <MyOrder></MyOrder>
+                        element: <BuyerPrivateRoute><MyOrder></MyOrder></BuyerPrivateRoute>
                     }
                 ]
             }

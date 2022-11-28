@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import { MdVerified } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
 
-const AdsCard = ({adsProduct, SetProductData}) => {
+const AdsCard = ({adsProduct, SetProductData, isBuyer}) => {
     const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, status,location, quality, OriginalPrice, ResellingPrice, productImg} = adsProduct;
     const {data: user = [], isLoading} = useQuery({
         queryKey: ['verifieduser', email],
@@ -56,12 +57,18 @@ const AdsCard = ({adsProduct, SetProductData}) => {
                         </div>
 
                         <div className='flex flex-col gap-3'>
-                        <label onClick={()=> SetProductData(adsProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
-                        Book Now
-                        </label>
-                        <button className='btn btn-sm btn-primary'>
-                            Report
-                        </button>
+                        { isBuyer ?
+                            <>
+                            <label onClick={()=> SetProductData(adsProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
+                            Book Now
+                            </label>
+                            <button className='btn btn-sm btn-primary'>
+                                Report
+                            </button>
+                            </>
+                            :
+                            <Link to="/login" className='btn bg-red-600 hover:bg-red-700'>Please Login as a Buyer</Link>
+                        }
                         </div>
                     </div>
                 </div>

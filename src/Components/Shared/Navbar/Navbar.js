@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { userAuth } from '../../../Contexts/AuthContext';
 import toast from 'react-hot-toast';
 
 const Navbar = () => {
     const [state, setState] = useState(false)
     const { user, signOutSystem } = useContext(userAuth);
-    console.log(user);
+    const navigate = useNavigate();
     const navigation = [
         { title: "Home", path: "/home" },
         { title: "Shop", path: "/shop" },
@@ -17,6 +17,7 @@ const Navbar = () => {
         signOutSystem()
             .then(result => {
                 toast.success(`Successfully Sign Out ${user?.displayName}`);
+                navigate('/')
             })
             .catch(() => { })
     }

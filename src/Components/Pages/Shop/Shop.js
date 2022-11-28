@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { userAuth } from '../../../Contexts/AuthContext';
 import useTitle from '../../Hooks/useTitle';
 import ModalBody from '../../Shared/ModalBody/ModalBody';
 import ShopCard from './ShopCard/ShopCard';
 
 const Shop = () => {
     useTitle("Shop")
+    const {user} = useContext(userAuth);
+    const currentUser = user?.email
     const [productData, SetProductData] = useState(null);
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allproducts'],
@@ -25,7 +28,7 @@ const Shop = () => {
                 <h1>Welcome to Our Online Shop</h1>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
-                {allProducts.map(product => <ShopCard SetProductData={SetProductData} key={product._id} product={product}></ShopCard>)}
+                {allProducts.map(product => <ShopCard currentUser={currentUser} SetProductData={SetProductData} key={product._id} product={product}></ShopCard>)}
             </div>
 
 

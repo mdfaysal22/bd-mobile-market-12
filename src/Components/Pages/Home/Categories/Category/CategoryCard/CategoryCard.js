@@ -2,21 +2,24 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import { MdVerified } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import useBuyer from '../../../../../Hooks/useBuyer';
 import Loading from '../../../../../Shared/Loading/Loading';
 
-const CategoryCard = ({caregoryProduct, SetProductData}) => {
-    const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, status,location, quality, OriginalPrice, ResellingPrice, productImg} = caregoryProduct;
-    const {data: user = [], isLoading} = useQuery({
+const CategoryCard = ({ caregoryProduct, SetProductData, currentUser }) => {
+    const [isBuyer] = useBuyer(currentUser)
+    const { PostDate, _id, ProductName, usedYear, email, name, PhoneNumber, status, location, quality, OriginalPrice, ResellingPrice, productImg } = caregoryProduct;
+    const { data: user = [], isLoading } = useQuery({
         queryKey: ['verifieduser', email],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/verifieduser?email=${email}`)
-            
+
             return res.data;
         }
-        
+
     })
-    if(isLoading){
-        
+    if (isLoading) {
+
         return <Loading></Loading>
     }
     const userInfo = user?.[0]
@@ -56,12 +59,20 @@ const CategoryCard = ({caregoryProduct, SetProductData}) => {
                         </div>
 
                         <div className='flex flex-col gap-3'>
-                        <label onClick={()=> SetProductData(caregoryProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
-                        Book Now
-                        </label>
-                        <button className='btn btn-sm btn-primary'>
-                            Report
-                        </button>
+                            {isBuyer ?
+                                <>
+                                    <label onClick={() => SetProductData(caregoryProduct)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
+                                        Book Now
+                                    </label>
+                                    <button className='btn btn-sm btn-primary'>
+                                        Report
+                                    </button>
+                                </>
+                                :
+                                <>
+                                <Link to="/login" className='btn bg-red-600 hover:bg-red-700'>Please Login as a Buyer</Link>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>

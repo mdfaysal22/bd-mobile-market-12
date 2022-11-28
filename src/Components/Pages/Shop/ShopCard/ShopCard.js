@@ -2,26 +2,30 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import Loading from '../../../Shared/Loading/Loading';
-import {MdVerified} from 'react-icons/md';
+import { MdVerified } from 'react-icons/md';
+import useBuyer from '../../../Hooks/useBuyer';
+import { Link } from 'react-router-dom';
 
-const ShopCard = ({product, SetProductData}) => {
-    const {PostDate,_id, ProductName,usedYear,email, name,PhoneNumber, status,location, quality, OriginalPrice, ResellingPrice, productImg } = product;
-    const {data: user = [], isLoading} = useQuery({
+const ShopCard = ({ product, currentUser, SetProductData }) => {
+
+    const { PostDate, _id, ProductName, usedYear, email, name, PhoneNumber, status, location, quality, OriginalPrice, ResellingPrice, productImg } = product;
+    const [isBuyer] = useBuyer(currentUser)
+    const { data: user = [], isLoading } = useQuery({
         queryKey: ['verifieduser', email],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/verifieduser?email=${email}`)
-            
+
             return res.data;
         }
-        
+
     })
-    if(isLoading){
-        
+    if (isLoading) {
+
         return <Loading></Loading>
     }
     const userInfo = user?.[0]
     // const {imgURL, verified} = userInfo;
-    
+
     return (
         <div>
             <div className="flex flex-col mb-12 overflow-hidden cursor-pointer">
@@ -47,34 +51,42 @@ const ShopCard = ({product, SetProductData}) => {
                         <p className='text-secondary'><span className='font-semibold'>Years of Use:</span> {usedYear}</p>
                         <h3 className='text-secondary'>Price :$<span className='line-through'>{OriginalPrice}</span> <span className='semibold '> {ResellingPrice}</span></h3>
                         <div className='divider my-2 h-0 before:bg-black after:bg-black'></div>
-                        
+
                         <div className='flex my-2 justify-start items-center gap-3'>
-                            
+
                             <img className='object-cover w-12 h-12 rounded-full' src={userInfo?.imgURL} alt="Usre Imagee" />
-                            
+
                             <div>
                                 <h1 className='text-secondary'><span className='font-semibold'>Seller Name</span> {name} <span>{userInfo?.verified && <MdVerified className='inline text-blue-600'></MdVerified>}</span></h1>
                                 <p className='text-secondary'><span className='font-semibold'>Contact: </span>{PhoneNumber}</p>
                             </div>
                         </div>
-                        
+
 
 
 
 
                         <div className='flex flex-col gap-3 justify-between item-center'>
-                        <label onClick={()=> SetProductData(product)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
-                        Book Now
-                        </label>
-                        <button className='btn btn-sm btn-primary'>
-                            Report
-                        </button>
+                            {isBuyer ? 
+                                <>
+                                    <label onClick={() => SetProductData(product)} className='text-center btn bg-blue-800 hover:bg-blue-900 btn-sm' htmlFor="Product-connector">
+                                        Book Now
+                                    </label>
+                                    <button className='btn btn-sm btn-primary'>
+                                        Report
+                                    </button>
+                                </>
+                                :
+                                <>
+                                <Link className='btn bg-red-600 hover:bg-red-700' to='/login'>Please login As a Buyer</Link>
+                                </>
+                            }
                         </div>
-                        
-                        
+
+
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );
