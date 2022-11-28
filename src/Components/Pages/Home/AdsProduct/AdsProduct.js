@@ -12,13 +12,13 @@ const AdsProduct = () => {
     const [isBuyer] = useBuyer(user?.email)
     const { data: adsProducts = [], refetch } = useQuery({
         queryKey: ['advertising'],
-        queryFn: () => fetch('http://localhost:5000/advertising')
+        queryFn: () => fetch('https://assignment-12-server-mdfaysal22.vercel.app/advertising')
             .then(res => res.json())
 
     })
 
     const handleReportedItem = id => {
-        fetch(`http://localhost:5000/allproducts/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/allproducts/${id}`, {
             method: "PUT"
         })
         .then(res => res.json())

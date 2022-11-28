@@ -11,7 +11,7 @@ const Category = () => {
     const {user} = useContext(userAuth);
     const currentUser = user?.email;
     const handleReportedItem = id => {
-        fetch(`http://localhost:5000/allproducts/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/allproducts/${id}`, {
             method: "PUT"
         })
         .then(res => res.json())

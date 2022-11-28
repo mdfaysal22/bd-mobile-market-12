@@ -22,7 +22,7 @@ const ModalBody = ({ productData, refetch, SetProductData }) => {
             BuyerPhone: form.BuyerPhone.value,
             MeetingLocation: form.location.value
         }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://assignment-12-server-mdfaysal22.vercel.app/orders', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -31,12 +31,12 @@ const ModalBody = ({ productData, refetch, SetProductData }) => {
         })
             .then(res => res.json())
             .then(data => {
-                fetch(`http://localhost:5000/advertising/${_id}`, {
+                fetch(`https://assignment-12-server-mdfaysal22.vercel.app/advertising/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
                     .then(data => {
-                        fetch(`http://localhost:5000/products/${_id}`, {
+                        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/products/${_id}`, {
                         method: "PUT"
                     })
                         .then(res => res.json())

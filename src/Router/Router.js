@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/:category",
-                loader: ({params}) => fetch(`http://localhost:5000/allproducts/${params.category}`),
+                loader: ({params}) => fetch(`https://assignment-12-server-mdfaysal22.vercel.app/allproducts/${params.category}`),
                 element: <SellerOrBuyer><Category></Category></SellerOrBuyer>
             },
             {

@@ -4,7 +4,7 @@ import { BsTrash } from 'react-icons/bs';
 const Buyer = ({buyer, refetch}) => {
     const {_id,imgURL, name, email} = buyer;
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/users/${id}`, {
         method: "DELETE"
         })
         .then(res => res.json())

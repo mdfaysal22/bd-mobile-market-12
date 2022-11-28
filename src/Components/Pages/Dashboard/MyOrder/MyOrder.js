@@ -11,7 +11,7 @@ const MyOrder = () => {
     const {data: orders = []} = useQuery({
         queryKey: ["orders", email],
         queryFn: async() => {
-            const res = await axios.get(`http://localhost:5000/orders?BuyerEmail=${email}`)
+            const res = await axios.get(`https://assignment-12-server-mdfaysal22.vercel.app/orders?BuyerEmail=${email}`)
             return res.data
         }
     })

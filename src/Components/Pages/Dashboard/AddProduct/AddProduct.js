@@ -55,7 +55,7 @@ const AddProduct = () => {
                         productImg: imgURL
                     }
 
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://assignment-12-server-mdfaysal22.vercel.app/products', {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json'

@@ -12,7 +12,7 @@ const CategoryCard = ({ caregoryProduct, SetProductData, currentUser, handleRepo
     const { data: user = [], isLoading } = useQuery({
         queryKey: ['verifieduser', email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/verifieduser?email=${email}`)
+            const res = await axios.get(`https://assignment-12-server-mdfaysal22.vercel.app/verifieduser?email=${email}`)
 
             return res.data;
         }

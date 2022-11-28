@@ -9,7 +9,7 @@ const ProductCard = ({ product, refetchFun }) => {
     const { _id,status, ProductName, ResellingPrice, productImg } = product;
     
     const handleAds = () => {
-        fetch(`http://localhost:5000/advertising`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/advertising`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -27,18 +27,18 @@ const ProductCard = ({ product, refetchFun }) => {
     const {data: alreadyAds = [], refetch, isLoading} = useQuery({
         queryKey: ["advertising"],
         queryFn: async() => {
-            const res = await axios.get(`http://localhost:5000/advertising`)
+            const res = await axios.get(`https://assignment-12-server-mdfaysal22.vercel.app/advertising`)
             return res.data;
         }
     })
     const myAds = alreadyAds.find(ads => ads?._id === _id);
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/advertising/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/advertising/${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
         .then(data => {
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://assignment-12-server-mdfaysal22.vercel.app/products/${id}`, {
                 method: "DELETE"
             })
             .then(res => res.json())

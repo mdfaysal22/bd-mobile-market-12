@@ -6,7 +6,7 @@ const AllSeller = () => {
     const {data: allUsers = [], refetch} = useQuery({
         queryKey:['users'],
         queryFn: () => 
-            fetch("http://localhost:5000/users")
+            fetch("https://assignment-12-server-mdfaysal22.vercel.app/users")
             .then(res => res.json())
         
     })

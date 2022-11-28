@@ -5,7 +5,7 @@ import {GoVerified} from 'react-icons/go'
 const Seller = ({seller, refetch}) => {
     const {_id,imgURL, name, email, verified} = seller;
     const handleVerified = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/users/${id}`, {
             method: "PUT"
         })
         .then(res => res.json())
@@ -15,7 +15,7 @@ const Seller = ({seller, refetch}) => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/users/${id}`, {
         method: "DELETE"
         })
         .then(res => res.json())

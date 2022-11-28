@@ -4,12 +4,12 @@ import { BsTrash } from 'react-icons/bs';
 const ReportedCard = ({reportedItems, refetch}) => {
     const { _id,status, ProductName, ResellingPrice, productImg } = reportedItems;
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/advertising/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/advertising/${id}`, {
             method: "DELETE"
         })
         .then(res => res.json())
         .then(data => {
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://assignment-12-server-mdfaysal22.vercel.app/products/${id}`, {
                 method: "DELETE"
             })
             .then(res => res.json())

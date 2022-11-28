@@ -6,7 +6,7 @@ const ReportedItem = () => {
     const {data: reportedProducts = [], refetch} = useQuery({
         queryKey:["products"],
         queryFn: () => 
-        fetch(`http://localhost:5000/reportedProducts?report=Reported`)
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/reportedProducts?report=Reported`)
         .then(res => res.json())
     })
 

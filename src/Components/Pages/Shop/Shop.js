@@ -15,14 +15,14 @@ const Shop = () => {
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allproducts'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/allproducts')
+            const res = await axios.get('https://assignment-12-server-mdfaysal22.vercel.app/allproducts')
             return res.data
         }
 
     })
 
     const handleReportedItem = id => {
-        fetch(`http://localhost:5000/allproducts/${id}`, {
+        fetch(`https://assignment-12-server-mdfaysal22.vercel.app/allproducts/${id}`, {
             method: "PUT"
         })
         .then(res => res.json())
