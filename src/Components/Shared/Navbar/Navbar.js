@@ -22,7 +22,7 @@ const Navbar = () => {
             .catch(() => { })
     }
     return (
-        <nav className="bg-white w-full shadow-sm border-b md:border-0 md:static">
+        <nav className="bg-red-50 border-b-2 w-full border-red-100 md:border-0 md:static">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <Link to={'/'}>

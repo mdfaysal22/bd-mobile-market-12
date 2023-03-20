@@ -4,6 +4,7 @@ import AdsProduct from './AdsProduct/AdsProduct';
 import Banner from './Banner/Banner';
 import Categories from './Categories/Categories';
 import OurTrasted from './OurTrasted/OurTrasted';
+import Talk from './Talk/Talk';
 
 const Home = () => {
     useTitle("Home")
@@ -12,6 +13,7 @@ const Home = () => {
             <Banner></Banner>
             <Categories></Categories>
             <AdsProduct></AdsProduct>
+            <Talk></Talk>
             <OurTrasted></OurTrasted>
         </div>
     );

@@ -32,7 +32,7 @@ const AdsProduct = () => {
     }
 
     return (
-        <div className='mt-5'>
+        <div className='mt-10'>
             {
                 adsProducts.length !== 0 && <>
                     <div className='text-center bg-red-100  rounded-md shadow-lg shadow-red-300 py-2'>

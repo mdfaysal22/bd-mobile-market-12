@@ -7,8 +7,8 @@ import {GrFacebook} from 'react-icons/gr'
 
 const OurTrasted = () => {
     return (
-        <div className='m-10'>
-            <div className='bg-gray-100 p-10 text-black font-semibold'>
+        <div className='my-5'>
+            <div className='bg-red-100 shadow-lg shadow-red-300 p-10 text-black font-semibold'>
                 <div className='text-center'>
                     <h1 className='text-xl md:text-4xl lg:text-6xl'>Our Trusted Client</h1>
                 </div>
