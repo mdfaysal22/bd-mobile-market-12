@@ -35,8 +35,8 @@ const AdsProduct = () => {
         <div className='mt-5'>
             {
                 adsProducts.length !== 0 && <>
-                    <div className='text-center'>
-                        <h1 className='text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-800 via-orange-500 to-orange-400'>Advertising Product {adsProducts.length}</h1>
+                    <div className='text-center bg-red-100  rounded-md shadow-lg shadow-red-300 py-2'>
+                        <h1 className='text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r text-black uppercase'>Advertising Product {adsProducts.length}</h1>
                     </div>
 
                     <div className='grid grid-cols-1 sm:grid-cols-2 mt-5 gap-3 md:grid-cols-3 lg:grid-cols-4 '>
