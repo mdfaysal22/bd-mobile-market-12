@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
 
-const AdsCard = ({adsProduct,}) => {
+const AdsCard = ({adsProduct}) => {
     const { ProductName,email, productImg} = adsProduct;
     const {data: user = [], isLoading} = useQuery({
         queryKey: ['verifieduser', email],

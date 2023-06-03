@@ -9,7 +9,7 @@ import {
 function App() {
   const queryClient = new QueryClient();
   return (
-    <div className="max-w-screen-xl	mx-auto">
+    <div className="bg-red-50">
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}>
         </RouterProvider>

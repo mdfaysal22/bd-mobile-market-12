@@ -5,16 +5,26 @@ import Banner from './Banner/Banner';
 import Categories from './Categories/Categories';
 import OurTrasted from './OurTrasted/OurTrasted';
 import Talk from './Talk/Talk';
+import Delivery from './Delivery/Delivery';
+import AboutUs from './AboutUs/AboutUs';
+import Features from './Features/Features';
+import GetInTouch from './GetInTouch/GetInTouch';
+import Discount from './Discount/Discount';
 
 const Home = () => {
     useTitle("Home")
     return (
         <div className=' px-4 md:px-8 mx-auto'>
-            <Banner></Banner>
-            <Categories></Categories>
-            <AdsProduct></AdsProduct>
-            <Talk></Talk>
-            <OurTrasted></OurTrasted>
+            <Discount/>
+            <Banner/>
+            <Categories/>
+            <AdsProduct/>
+            <Talk/>
+            <AboutUs/>
+            <GetInTouch/>
+            <Features/>
+            <Delivery/>
+            <OurTrasted/>
         </div>
     );
 };

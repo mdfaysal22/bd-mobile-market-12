@@ -19,7 +19,8 @@ const Footer = () => {
         }
     ]
     return (
-        <footer className="text-gray-500 bg-red-100 px-4 py-5 max-w-screen-xl mx-auto">
+        <footer className="text-gray-500 bg-red-50 px-4 py-5">
+            <div className='max-w-screen-xl	mx-auto'>
             <div className="max-w-lg sm:mx-auto sm:text-center">
                 <h1 className='text-primary font-semibold text-4xl'>BD Mobile Market</h1>
                 <p className="leading-relaxed mt-2 text-[15px]">
@@ -65,6 +66,7 @@ const Footer = () => {
                     fill: currentColor;
                 }
             `}</style>
+            </div>
         </footer>
     );
 };

@@ -1,0 +1,7 @@
+.bg{
+    background-image: linear-gradient(rgba(78, 23, 0, 0.853), rgba(28, 14, 0, 0.822)), url(../../../../Assets/gitInTouch.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
